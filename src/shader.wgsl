@@ -1,0 +1,21 @@
+@vertex
+fn vs_main(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) vec4<f32> {
+    var positions = array<vec2<f32>, 6>(
+        // First triangle
+        vec2<f32>(-0.5,  -0.5),   // bottom
+        vec2<f32>(-0.5, 0.5),   // top left
+        vec2<f32>( 0.5, 0.5),    // top right
+
+        // Second triangle
+        vec2<f32>(0.5,  0.5),   // top
+        vec2<f32>(-0.5, -0.5),   // bottom left
+        vec2<f32>( 0.5, -0.5)    // bottom right
+    );
+    let pos = positions[vertex_index];
+    return vec4<f32>(pos, 0.0, 1.0);
+}
+
+@fragment
+fn fs_main() -> @location(0) vec4<f32> {
+    return vec4<f32>(1.0, 0.5, 0.2, 1.0); // orange, RGBA
+}
